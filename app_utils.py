@@ -276,3 +276,28 @@ def solucao_jacobi(k, F, ite, tol):
         #print("--------------") #Com esse print é possivel perceber que a de Gauss converte antes
             
     return matriz_x
+
+def valida_peso_comprimento(m_nos, m_incidencia, density, area,num_membros):
+    lengths = []
+    weights = []
+    for n_membro in range(num_membros):
+        no_1 = int(m_incidencia[n_membro-1, 0])
+        no_2 = int(m_incidencia[n_membro-1, 1])
+
+        # Pegar a coordenada do no_1
+        x_no1 = m_nos[0, no_1-1]
+        y_no1 = m_nos[1, no_1-1]
+
+        # Pegar a coordenada do no_2
+        x_no2 = m_nos[0, no_2-1]
+        y_no2 = m_nos[1, no_2-1]
+
+        l = distancia_entre_pontos(x_no2, x_no1, y_no2, y_no1)
+        if l > 0.110:
+            print(n_membro)
+        lengths.append(l)
+        
+        peso = l*area*density
+        weights.append(peso)
+    
+    return weights, lengths
