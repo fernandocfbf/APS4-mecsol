@@ -277,7 +277,7 @@ def solucao_jacobi(k, F, ite, tol):
             
     return matriz_x
 
-def valida_peso_comprimento(m_nos, m_incidencia, density, area,num_membros):
+def valida_peso_comprimento(m_nos, m_incidencia, density, num_membros):
     lengths = []
     weights = []
     for n_membro in range(num_membros):
@@ -296,7 +296,7 @@ def valida_peso_comprimento(m_nos, m_incidencia, density, area,num_membros):
         if l > 0.110:
             print(n_membro)
         lengths.append(l)
-        
+        area = m_incidencia[n_membro-1, 3]
         peso = l*area*density
         weights.append(peso)
     
